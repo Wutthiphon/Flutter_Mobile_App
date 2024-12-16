@@ -310,7 +310,7 @@ class _MyAppState extends State<MyApp> {
               Expanded(
                 child: SingleChildScrollView(
                   child: Padding(
-                    padding: EdgeInsets.all(16.0),
+                    padding: const EdgeInsets.all(16.0),
                     child: Column(
                       children: [
                         const Text(
@@ -326,6 +326,7 @@ class _MyAppState extends State<MyApp> {
                             Expanded(
                               child: TextField(
                                 decoration: InputDecoration(
+                                  icon: Icon(Icons.battery_0_bar),
                                   labelText: 'Current SOC %',
                                   hintText: 'Enter %',
                                   border: OutlineInputBorder(
@@ -339,6 +340,7 @@ class _MyAppState extends State<MyApp> {
                             Expanded(
                               child: TextField(
                                 decoration: InputDecoration(
+                                  icon: Icon(Icons.battery_full),
                                   labelText: 'Target SOC %',
                                   hintText: 'Enter %',
                                   border: OutlineInputBorder(
@@ -351,10 +353,55 @@ class _MyAppState extends State<MyApp> {
                           ],
                         ),
                         const SizedBox(height: 10),
+                        const Row(
+                          children: [
+                            Expanded(
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  icon: Icon(Icons.power),
+                                  labelText: 'Charge Rate (A)',
+                                  hintText: 'Enter A',
+                                  border: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10)),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(width: 10),
+                            Expanded(
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  icon: Icon(Icons.bolt),
+                                  labelText: 'Volt (V)',
+                                  hintText: 'Enter V',
+                                  border: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10)),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 10),
                         const TextField(
                           decoration: InputDecoration(
-                            labelText: 'Charge Rate (A)',
-                            hintText: 'Enter A',
+                            icon: Icon(Icons.battery_full),
+                            labelText: 'Battery kWh',
+                            hintText: 'Enter V',
+                            border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        const TextField(
+                          decoration: InputDecoration(
+                            icon: Icon(Icons.savings),
+                            labelText: 'Eff %',
+                            hintText: 'Enter Eff %',
                             border: OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10)),
@@ -372,41 +419,35 @@ class _MyAppState extends State<MyApp> {
                         ),
                         const SizedBox(height: 10),
                         const Card(
-                          child: ListTile(
-                            leading: Icon(Icons.power),
-                            title: Text('Volt'),
-                            subtitle: Text('225'),
-                          ),
-                        ),
-                        const Card(
+                          color: Color.fromRGBO(255, 220, 24, 1),
                           child: ListTile(
                             leading: Icon(Icons.bolt),
-                            title: Text('Watt Charge'),
+                            title: Text('Watt Charge (kWh)'),
                             subtitle: Text('4.1400'),
                           ),
                         ),
                         const Card(
-                          color: Color.fromRGBO(255, 220, 24, 1),
+                          color: Color.fromARGB(255, 23, 137, 109),
                           child: ListTile(
-                            leading: Icon(Icons.fast_forward),
-                            title: Text('Charge Time'),
-                            subtitle: Text('7.085'),
-                          ),
-                        ),
-                        const Card(
-                          color: Color.fromRGBO(182, 255, 188, 1),
-                          child: ListTile(
-                            leading: Icon(Icons.battery_full),
-                            title: Text('Battery kWh'),
-                            subtitle: Text('38.5'),
-                          ),
-                        ),
-                        const Card(
-                          color: Color.fromRGBO(191, 248, 241, 1),
-                          child: ListTile(
-                            leading: Icon(Icons.savings),
-                            title: Text('Eff %'),
-                            subtitle: Text('0.84'),
+                            leading: Icon(
+                              Icons.fast_forward,
+                              color: Colors.white,
+                            ),
+                            title: Text(
+                              'Charge Time',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            subtitle: Text(
+                              '7.085',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                              ),
+                            ),
                           ),
                         ),
                       ],
