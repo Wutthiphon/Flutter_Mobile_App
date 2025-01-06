@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// import 'package:flutter_cs_in_lab_project/pages/next_welcome.dart';
 
 class Welcome extends StatefulWidget {
   const Welcome({super.key});
@@ -8,7 +9,7 @@ class Welcome extends StatefulWidget {
 }
 
 class _WelcomeState extends State<Welcome> {
-  String _chat = 'Waiting Chat...';
+  String _chat = '';
   final TextEditingController _controller = TextEditingController();
 
   void sayHi() {
@@ -16,6 +17,18 @@ class _WelcomeState extends State<Welcome> {
     setState(() {
       _chat = 'User: $input_text';
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _chat = 'Waiting Chat...';
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -58,7 +71,31 @@ class _WelcomeState extends State<Welcome> {
                   sayHi();
                 },
                 child: const Text('Say This'),
-              )
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  // Navigator.pushReplacement // Replace Current Page
+                  // Navigator.pushAndRemoveUntil // Remove All in Stack
+                  // Navigator.pushAndRemoveUntil(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     builder: (context) => NextWelcome(
+                  //       name: _controller.text,
+                  //     test_number: 19,
+                  //     ),
+                  //   ),
+                  //   (route) => false,
+                  // );
+                  Navigator.pushNamed(
+                    context,
+                    '/next_welcome',
+                    arguments: {
+                      'name': _controller.text,
+                    },
+                  );
+                },
+                child: const Text('Next Page'),
+              ),
             ],
           ),
         ),
