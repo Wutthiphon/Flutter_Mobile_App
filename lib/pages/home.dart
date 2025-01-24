@@ -1,37 +1,44 @@
 import 'package:flutter/material.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({super.key});
 
   @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.search),
-            onPressed: () {
-              debugPrint('Search Tap');
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.notifications),
-            onPressed: () {
-              debugPrint('Notifications Tap');
-            },
-          ),
-        ],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: const [
-            Text('Home Page'),
+        appBar: AppBar(
+          title: const Text('Home'),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.search),
+              onPressed: () {
+                debugPrint('Search Tap');
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.notifications),
+              onPressed: () {
+                debugPrint('Notifications Tap');
+              },
+            ),
           ],
         ),
-      ),
-    );
+        body: const Center(
+          child: Padding(
+            padding: EdgeInsets.all(16),
+            child: Column(
+              children: [
+                Text('Welcome'),
+                Text('Please enter your name:'),
+              ],
+            ),
+          ),
+        ));
 
     // Learning LAB
     // body: Padding(
