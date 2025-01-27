@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_cs_in_lab_project/pages/welcome.dart';
@@ -24,6 +26,7 @@ class _HomeState extends State<Home> {
       Uri.parse('https://itpart.net/mobile/api/product1.php'),
     );
     if (response.statusCode == 200) {
+      // return (json.decode(response.body))['title'];
       return response.body.toString();
     } else {
       throw Exception('Failed to load data');
