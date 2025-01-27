@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:flutter_cs_in_lab_project/pages/welcome.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -8,39 +10,142 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  // final List<String> _list = [
+  //   'Microsoft Windows XP',
+  //   'Microsoft Windows 7',
+  //   'Kaspersky 2010',
+  //   'ESET NOD32 Version 4',
+  //   'MacOS 10.9',
+  // ];
+
+  Future<String> fetchData() async {
+    final response = await http.get(
+      // Uri.parse('https://api.wutthiphon.space/api/woodych_web/project'),
+      Uri.parse('https://itpart.net/mobile/api/product1.php'),
+    );
+    if (response.statusCode == 200) {
+      return response.body.toString();
+    } else {
+      throw Exception('Failed to load data');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Home'),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.search),
-              onPressed: () {
-                debugPrint('Search Tap');
+      appBar: AppBar(
+        title: const Text('Home'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.search),
+            onPressed: () {
+              debugPrint('Search Tap');
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.notifications),
+            onPressed: () {
+              debugPrint('Notifications Tap');
+            },
+          ),
+        ],
+      ),
+      body: Center(
+        child: Column(
+          children: [
+            const Text("API Test"),
+            FutureBuilder(
+              future: fetchData(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return Center(
+                    child: Column(
+                      children: [
+                        Text(
+                          '${snapshot.data}',
+                          style: const TextStyle(fontSize: 20),
+                        ),
+                      ],
+                    ),
+                  );
+                } else if (snapshot.hasError) {
+                  return Text('${snapshot.error}');
+                }
+                return const Center(child: CircularProgressIndicator());
               },
-            ),
-            IconButton(
-              icon: const Icon(Icons.notifications),
-              onPressed: () {
-                debugPrint('Notifications Tap');
-              },
-            ),
+            )
           ],
         ),
-        body: const Center(
-          child: Padding(
-            padding: EdgeInsets.all(16),
-            child: Column(
-              children: [
-                Text('Welcome'),
-                Text('Please enter your name:'),
-              ],
-            ),
-          ),
-        ));
+      ),
+    );
 
     // Learning LAB
+    // ListView.separated(
+    //     itemBuilder: (context, index) => ListTile(
+    //           title: Text(_list[index]),
+    //           subtitle: const Text('Software'),
+    //           leading: const Icon(Icons.apps),
+    //           trailing: const Icon(Icons.arrow_forward_ios),
+    //           onTap: () {
+    //             debugPrint('Tap');
+    //           },
+    //         ),
+    //     separatorBuilder: (context, index) => const Divider(),
+    //     itemCount: _list.length),
+
+    // ListView(
+    //   children: [
+    //     const ListTile(
+    //       title: Text("Simulator", style: TextStyle(fontSize: 20)),
+    //     ),
+    //     ListTile(
+    //       title: Text("Microsoft Windows XP"),
+    //       subtitle: Text("Microsoft Corporation"),
+    //       leading: Icon(Icons.apps),
+    //       trailing: Icon(Icons.arrow_forward_ios),
+    //       tileColor: Colors.amber,
+    //       onTap: () {},
+    //     ),
+    //     ListTile(
+    //       title: Text("Microsoft Windows 7"),
+    //       subtitle: Text("Microsoft Corporation"),
+    //       leading: Icon(Icons.apps),
+    //       trailing: Icon(Icons.arrow_forward_ios),
+    //       tileColor: Colors.amber,
+    //       onTap: () {},
+    //     ),
+    //     ListTile(
+    //       title: Text("Kaspersky 2010"),
+    //       subtitle: Text("Kaspersky Lab"),
+    //       leading: Icon(Icons.apps),
+    //       trailing: Icon(Icons.arrow_forward_ios),
+    //       tileColor: Color.fromARGB(255, 79, 203, 137),
+    //       onTap: () {},
+    //     ),
+    //     ListTile(
+    //       title: Text("ESET NOD32 Version 4"),
+    //       subtitle: Text("ESET"),
+    //       leading: Icon(Icons.apps),
+    //       trailing: Icon(Icons.arrow_forward_ios),
+    //       tileColor: Color.fromARGB(255, 79, 203, 137),
+    //       onTap: () {},
+    //     ),
+    //     ListTile(
+    //       title: Text("MacOS 10.9"),
+    //       subtitle: Text("Apple Inc."),
+    //       leading: Icon(Icons.apps),
+    //       trailing: Icon(Icons.arrow_forward_ios),
+    //       onTap: () {},
+    //     ),
+    //     ListTile(
+    //       title: Text("Exit"),
+    //       leading: Icon(Icons.exit_to_app),
+    //       onTap: () => Navigator.push(context,
+    //           MaterialPageRoute(builder: (context) => const Welcome())),
+    //     ),
+    //   ],
+    // ),
+
     // body: Padding(
     //   padding: const EdgeInsets.all(16),
     //   // alignment: Alignment.center,

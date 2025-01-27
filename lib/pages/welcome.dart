@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter_cs_in_lab_project/pages/next_welcome.dart';
+import 'package:flutter_cs_in_lab_project/pages/next_welcome.dart';
 
 class Welcome extends StatefulWidget {
   const Welcome({super.key});
@@ -76,23 +76,22 @@ class _WelcomeState extends State<Welcome> {
                 onPressed: () {
                   // Navigator.pushReplacement // Replace Current Page
                   // Navigator.pushAndRemoveUntil // Remove All in Stack
-                  // Navigator.pushAndRemoveUntil(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //     builder: (context) => NextWelcome(
-                  //       name: _controller.text,
-                  //     test_number: 19,
-                  //     ),
-                  //   ),
-                  //   (route) => false,
-                  // );
-                  Navigator.pushNamed(
+                  Navigator.pushAndRemoveUntil(
                     context,
-                    '/next_welcome',
-                    arguments: {
-                      'name': _controller.text,
-                    },
+                    MaterialPageRoute(
+                      builder: (context) => NextWelcome(
+                        name: _controller.text,
+                      ),
+                    ),
+                    (route) => false,
                   );
+                  // Navigator.pushNamed(
+                  //   context,
+                  //   '/next_welcome',
+                  //   arguments: {
+                  //     'name': _controller.text,
+                  //   },
+                  // );
                 },
                 child: const Text('Next Page'),
               ),
