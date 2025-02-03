@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_cs_in_lab_project/pages/home.dart';
+// import 'package:flutter_cs_in_lab_project/pages/home.dart';
 // import 'package:flutter_cs_in_lab_project/pages/ev_cal.dart';
 // import 'package:flutter_cs_in_lab_project/pages/welcome.dart';
 // import 'package:flutter_cs_in_lab_project/pages/next_welcome.dart';
