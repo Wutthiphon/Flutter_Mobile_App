@@ -3,6 +3,8 @@ import 'package:flutter_cs_in_lab_project/pages/home.dart';
 // import 'package:flutter_cs_in_lab_project/pages/ev_cal.dart';
 // import 'package:flutter_cs_in_lab_project/pages/welcome.dart';
 // import 'package:flutter_cs_in_lab_project/pages/next_welcome.dart';
+// import 'package:flutter_cs_in_lab_project/pages/detail.dart';
+import 'package:flutter_cs_in_lab_project/pages/products.dart';
 
 void main() {
   runApp(const MyApp());
@@ -40,7 +42,8 @@ class MyApp extends StatelessWidget {
             seedColor: const Color.fromARGB(255, 23, 137, 109)),
       ),
       // home: const EVCal(),
-      home: const Home(),
+      // home: const Home(),
+      home: const ProductsPage(),
     );
   }
 }
